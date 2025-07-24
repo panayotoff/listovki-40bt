@@ -31,9 +31,12 @@ body {
   margin-bottom: 2rem;
 }
 
+.search-container {
+  display: flex;
+}
+
 .search-input {
   width: 100%;
-  max-width: 400px;
   padding: 10px 15px;
   font-size: 1rem;
   border-radius: 5px;
@@ -73,6 +76,7 @@ body {
   width: 100%;
   padding: 15px;
   font-size: 1rem;
+  line-height: 1.4;
   text-align: left;
   background-color: #fff;
   border: 2px solid #ddd;
@@ -179,7 +183,7 @@ body {
   border-radius: 8px;
   padding: 1.5rem;
   text-align: left;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   border: 1px solid #eee;
 }
 
@@ -199,6 +203,7 @@ body {
 .search-result-card li {
   padding: 8px;
   border-radius: 4px;
+  line-height: 1.4;
 }
 
 .highlight-answer {
@@ -212,4 +217,22 @@ body {
   max-width: 200px;
   border-radius: 4px;
   margin-top: 1rem;
+}
+
+footer {
+  margin-top: 20px;
+
+  svg{
+    display: inline-block;
+    margin-inline-start: .1em;
+  }
+  a {
+    text-decoration: none;
+    display: inline-flex;
+    margin-inline-start: 10px;
+    justify-content: center;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }
