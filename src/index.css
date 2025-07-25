@@ -5,6 +5,7 @@
   --danger-color: #dc3545;
   --light-color: #f8f9fa;
   --dark-color: #343a40;
+  --darken-color: #222629;
   --card-bg: #ffffff;
 }
 
@@ -60,6 +61,7 @@ body {
 
 /* Answers Grid */
 .answers-grid {
+  position: relative;
   display: grid;
   grid-template-columns: 1fr;
   gap: 1rem;
@@ -129,6 +131,23 @@ body {
   background-color: #0056b3;
 }
 
+.button-secondary {
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  background-color: var(--dark-color);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.button-secondary:hover {
+  background-color: var(--darken-color);
+}
+
 .results-container {
   padding: 2rem;
 }
@@ -163,7 +182,22 @@ body {
 /* Add these styles to your existing index.css */
 
 .start-quiz-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
   margin-bottom: 2rem;
+}
+
+.toggle-answers-container {
+  position: sticky;
+  left: 0;
+  top: 0;
+  padding-top: 0.25rem;
+  padding-bottom: 0.5rem;
+  margin-bottom: 2rem;
+  text-align: left;
+  background-color: var(rgba(--light-color, 0.8));
+  backdrop-filter: blur(5px);
 }
 
 .start-button {
@@ -211,6 +245,7 @@ body {
   color: #155724;
   font-weight: bold;
   border-left: 4px solid var(--success-color);
+  margin-left: -4px;
 }
 
 .question-image-small {
@@ -222,9 +257,9 @@ body {
 footer {
   margin-top: 20px;
 
-  svg{
+  svg {
     display: inline-block;
-    margin-inline-start: .1em;
+    margin-inline-start: 0.1em;
   }
   a {
     text-decoration: none;

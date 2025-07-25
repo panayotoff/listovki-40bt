@@ -19,6 +19,8 @@ const QUIZ_LENGTH = 60;
 function App() {
   const [mode, setMode] = useState<AppMode>("search");
   const [searchTerm, setSearchTerm] = useState("");
+  const [showAnswers, setShowAnswers] = useState(true);
+  const toggleAnswers = () => setShowAnswers((prev) => !prev);
   const [filteredQuestions, setFilteredQuestions] = useState<Question[]>(
     allQuestions.map((q) => ({
       ...q,
@@ -102,7 +104,12 @@ function App() {
                 Започни тест със случайни ({QUIZ_LENGTH} въпроса)
               </button>
             </div>
-            <SearchResultsList questions={filteredQuestions} />
+            <div className="toggle-answers-container">
+              <button onClick={toggleAnswers} className="button-secondary toggle-answers-button">
+                {showAnswers ? "Скрий отговорите" : "Покажи отговорите"}
+              </button>
+            </div>
+            <SearchResultsList showAnswers={showAnswers} questions={filteredQuestions} />
           </>
         );
     }
@@ -125,7 +132,7 @@ function App() {
       <main>{renderContent()}</main>
       <footer>
         <p>
-          © {(new Date().getFullYear())} Христо Панайотов, за лична употреба.
+          © {new Date().getFullYear()} Христо Панайотов, за лична употреба.
           <a
             href="https://www.marad.bg/sites/default/files/upload/documents/2019-09/Vyprosi_40BT_14012016.pdf"
             target="_blank"
