@@ -132,13 +132,10 @@ body {
 }
 
 .button-secondary {
-  padding: 15px 30px;
-  font-size: 1.2rem;
   background-color: var(--dark-color);
   color: white;
   border: none;
-  padding: 12px 24px;
-  font-size: 1.1rem;
+  padding: 12px;
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.2s;
@@ -146,6 +143,13 @@ body {
 
 .button-secondary:hover {
   background-color: var(--darken-color);
+}
+
+.toggle-answers-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
 }
 
 .results-container {
@@ -189,7 +193,7 @@ body {
 }
 
 .toggle-answers-container {
-  position: sticky;
+  /* position: sticky;
   left: 0;
   top: 0;
   padding-top: 0.25rem;
@@ -197,7 +201,7 @@ body {
   margin-bottom: 2rem;
   text-align: left;
   background-color: var(rgba(--light-color, 0.8));
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px); */
 }
 
 .start-button {
@@ -243,7 +247,7 @@ body {
 .highlight-answer {
   background-color: #e9f7ef;
   color: #155724;
-  font-weight: bold;
+  /* font-weight: bold; */
   border-left: 4px solid var(--success-color);
   margin-left: -4px;
 }
