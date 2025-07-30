@@ -8,3 +8,8 @@ export interface Question {
     answer_d: string;
     correct_answer: 'A' | 'B' | 'C' | 'D';
 }
+
+export interface SingleQuiz {
+    title: string;
+    questionsNumbers: (string | number)[];
+}
