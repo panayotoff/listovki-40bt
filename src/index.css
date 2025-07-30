@@ -15,6 +15,20 @@ body {
     "Droid Sans", "Helvetica Neue", sans-serif;
   background-color: var(--light-color);
   color: var(--dark-color);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
 }
 
 .App {
@@ -85,6 +99,7 @@ body {
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
+  text-wrap: pretty;
 }
 
 .answer-button:hover:not(:disabled) {
@@ -243,6 +258,7 @@ body {
   padding: 8px;
   border-radius: 4px;
   line-height: 1.4;
+  text-wrap: pretty;
 }
 
 .highlight-answer {
