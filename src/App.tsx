@@ -104,7 +104,7 @@ function App() {
           <>
             <div className="start-quiz-container">
               <button onClick={() => startQuiz()} className="button-primary start-button">
-                Тест ( случайни {QUIZ_LENGTH} въпроса )
+                Тест - {" " + QUIZ_LENGTH} въпроса 
               </button>
               {themeQuizes.map((quiz: SingleQuiz, index: number) => (
                 <button
@@ -118,8 +118,9 @@ function App() {
                     )
                   }
                   className="button-primary start-button"
+                  title={`Тест по тема: ${quiz.title} ( ${SINGLE_THEME_QUIZ_LENGTH} въпроса )`}
                 >
-                  {quiz.title} ( {SINGLE_THEME_QUIZ_LENGTH} / {quiz.questionsNumbers.length} въпроса)
+                  {quiz.title} ( {SINGLE_THEME_QUIZ_LENGTH} / {quiz.questionsNumbers.length} )
                 </button>
               ))}
             </div>
