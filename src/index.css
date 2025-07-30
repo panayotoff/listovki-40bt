@@ -50,6 +50,11 @@ p {
   display: flex;
 }
 
+.quiz-header {
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
 .search-input {
   width: 100%;
   padding: 10px 15px;
@@ -134,7 +139,7 @@ p {
   background-color: var(--primary-color);
   color: white;
   border: none;
-  padding: 12px 24px;
+  padding: 10px 20px;
   font-size: 1rem;
   border-radius: 8px;
   cursor: pointer;
@@ -143,8 +148,16 @@ p {
   text-align: left;
 }
 
+.button-green {
+  background-color: #66bb6a;
+}
+
 .button-primary:hover {
   background-color: #0056b3;
+}
+
+.button-green:hover {
+  background-color: #388e3c;
 }
 
 .button-secondary {
@@ -166,6 +179,22 @@ p {
   bottom: 20px;
   right: 20px;
   z-index: 1000;
+}
+
+.button-split {
+  border-radius: 8px;
+}
+
+.button-split-end{
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  padding-right: 12px;
+}
+
+.button-split-start{
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  padding-left: 12px;
 }
 
 .results-container {
@@ -196,10 +225,8 @@ p {
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 10; /* Ensure it's above the swiper */
+  z-index: 10;
 }
-
-/* Add these styles to your existing index.css */
 
 .start-quiz-container {
   display: flex;
@@ -208,20 +235,8 @@ p {
   margin-bottom: 2rem;
 }
 
-.toggle-answers-container {
-  /* position: sticky;
-  left: 0;
-  top: 0;
-  padding-top: 0.25rem;
-  padding-bottom: 0.5rem;
-  margin-bottom: 2rem;
-  text-align: left;
-  background-color: var(rgba(--light-color, 0.8));
-  backdrop-filter: blur(5px); */
-}
-
 .start-button {
-  padding: 15px 30px;
+  /* padding: 15px 30px; */
   font-size: 1.2rem;
   font-weight: bold;
 }

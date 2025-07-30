@@ -84,8 +84,8 @@ function App() {
         ...q,
         correct_answer: q.correct_answer as "A" | "B" | "C" | "D",
       }))
-    ); // Reset filter
-    setMode("search"); // Go back to search mode
+    );
+    setMode("search");
   };
 
   const renderContent = () => {
@@ -103,25 +103,44 @@ function App() {
         return (
           <>
             <div className="start-quiz-container">
-              <button onClick={() => startQuiz()} className="button-primary start-button">
-                Тест - {" " + QUIZ_LENGTH} въпроса 
+              <button
+                title={`Примерен тест от 60 случайни въпроса`}
+                onClick={() => startQuiz()}
+                className="button-primary button-green start-button"
+              >
+                {`Тест ${QUIZ_LENGTH} въпроса`}
               </button>
               {themeQuizes.map((quiz: SingleQuiz, index: number) => (
-                <button
-                  key={index}
-                  onClick={() =>
-                    startQuiz(
-                      quiz.questionsNumbers.map(
-                        (num) => allQuestions.find((q) => q.question_number === num.toString()) || allQuestions[0]
-                      ),
-                      SINGLE_THEME_QUIZ_LENGTH
-                    )
-                  }
-                  className="button-primary start-button"
-                  title={`Тест по тема: ${quiz.title} ( ${SINGLE_THEME_QUIZ_LENGTH} въпроса )`}
-                >
-                  {quiz.title} ( {SINGLE_THEME_QUIZ_LENGTH} / {quiz.questionsNumbers.length} )
-                </button>
+                <div key={index} className="button-split">
+                  <button
+                    title={`Тест по тема: ${quiz.title} ( ${SINGLE_THEME_QUIZ_LENGTH} въпроса )`}
+                    className="button-primary start-button button-split-end"
+                    onClick={() =>
+                      startQuiz(
+                        quiz.questionsNumbers.map(
+                          (num) => allQuestions.find((q) => q.question_number === num.toString()) || allQuestions[0]
+                        ),
+                        SINGLE_THEME_QUIZ_LENGTH
+                      )
+                    }
+                  >
+                    {quiz.title}
+                  </button>
+                  <button
+                    title={`Тест по тема: ${quiz.title} ( ${quiz.questionsNumbers.length} въпроса )`}
+                    className="button-primary start-button button-split-start"
+                    onClick={() =>
+                      startQuiz(
+                        quiz.questionsNumbers.map(
+                          (num) => allQuestions.find((q) => q.question_number === num.toString()) || allQuestions[0]
+                        ),
+                        quiz.questionsNumbers.length
+                      )
+                    }
+                  >
+                    ( {`${quiz.questionsNumbers.length} въпроса`} )
+                  </button>
+                </div>
               ))}
             </div>
             <div className="toggle-answers-container">
@@ -154,18 +173,32 @@ function App() {
 
   return (
     <div className="App">
-      <header className="app-header">
-        <h1>Листовки 40бт</h1>
-        <div className="search-container">
-          <input
-            type="text"
-            placeholder="Търси въпроси..."
-            value={searchTerm}
-            onChange={handleSearchChange}
-            className="search-input"
-          />
+      {mode === "quiz" ? (
+        <div className="quiz-header">
+          <button
+            className="button-secondary back-button"
+            title="Назад към въпросите"
+            onClick={() => {
+              setMode("search");
+            }}
+          >
+            Назад
+          </button>
         </div>
-      </header>
+      ) : (
+        <header className="app-header">
+          <h1>Листовки 40бт</h1>
+          <div className="search-container">
+            <input
+              type="text"
+              placeholder="Търси въпроси..."
+              value={searchTerm}
+              onChange={handleSearchChange}
+              className="search-input"
+            />
+          </div>
+        </header>
+      )}
       <main>{renderContent()}</main>
       <footer>
         <p>
