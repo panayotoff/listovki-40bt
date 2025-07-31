@@ -61,6 +61,14 @@ function App() {
     }
   };
 
+  useEffect(() => {
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "a" && mode && !(document.activeElement instanceof HTMLInputElement)) {
+        toggleAnswers();
+      }
+    });
+  }, []);
+
   const startQuiz = (quizQuestions = allQuestions, quizLength = QUIZ_LENGTH) => {
     const randomQuestions = shuffleArray(quizQuestions).slice(0, quizLength);
     setQuizQuestions(
