@@ -74,7 +74,7 @@ function App() {
 
   useEffect(() => {
     document.addEventListener("keydown", (e) => {
-      if (e.key === "a" && mode && !(document.activeElement instanceof HTMLInputElement)) {
+      if (e.keyCode === 65 && mode && !(document.activeElement instanceof HTMLInputElement)) {
         toggleAnswers();
       }
     });
