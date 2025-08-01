@@ -19,7 +19,18 @@ const QUIZ_LENGTH = 60;
 const SINGLE_THEME_QUIZ_LENGTH = 20;
 
 function App() {
-  const themeQuizes: SingleQuiz[] = themeTests as SingleQuiz[];
+  const themeQuizes: SingleQuiz[] = [
+    ...themeTests,
+    {
+      title: "Останали",
+      questionsNumbers: allQuestions
+        .filter(
+          (q) => !themeTests.some((test: SingleQuiz) => test.questionsNumbers.includes(parseInt(q.question_number)))
+        )
+        .map((q) => q.question_number),
+    },
+  ] as SingleQuiz[];
+
   const [mode, setMode] = useState<AppMode>("search");
   const [searchTerm, setSearchTerm] = useState("");
   const [showAnswers, setShowAnswers] = useState(true);
