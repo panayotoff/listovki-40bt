@@ -45,6 +45,9 @@ function App() {
   const [finalScore, setFinalScore] = useState(0);
 
   const isMobile = false; // useMediaQuery("(max-width: 768px)");
+  const navigationButtons = Array.from({ length: Math.ceil(allQuestions.length / 100) }, (_, i) =>
+    i === 0 ? 1 : i * 100
+  );
 
   // Effect for handling search filtering
   useEffect(() => {
@@ -123,11 +126,18 @@ function App() {
           <>
             <div className="start-quiz-container">
               <button
-                title={`Примерен тест от 60 случайни въпроса`}
+                title={`Примерен тест от ${QUIZ_LENGTH} случайни въпроса`}
                 onClick={() => startQuiz()}
                 className="button-primary button-green start-button"
               >
                 {`Тест ${QUIZ_LENGTH} въпроса`}
+              </button>
+              <button
+                title={`Примерен тест от ${SINGLE_THEME_QUIZ_LENGTH} случайни въпроса`}
+                onClick={() => startQuiz(undefined, SINGLE_THEME_QUIZ_LENGTH)}
+                className="button-primary button-green start-button"
+              >
+                {`Тест ${SINGLE_THEME_QUIZ_LENGTH} въпроса`}
               </button>
               {themeQuizes.map((quiz: SingleQuiz, index: number) => (
                 <div key={index} className="button-split">
@@ -162,6 +172,7 @@ function App() {
                 </div>
               ))}
             </div>
+
             <div className="toggle-answers-container">
               <button
                 onClick={toggleAnswers}
@@ -215,6 +226,13 @@ function App() {
               onChange={handleSearchChange}
               className="search-input"
             />
+          </div>
+          <div className="quiz-navigation">
+            {navigationButtons.map((questionIndex) => (
+              <a key={questionIndex} href={`#question-${questionIndex}`} title={`Отиди на въпрос ${questionIndex}`}>
+                {questionIndex}
+              </a>
+            ))}
           </div>
         </header>
       )}

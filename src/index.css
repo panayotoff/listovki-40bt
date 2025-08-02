@@ -185,13 +185,13 @@ p {
   border-radius: 8px;
 }
 
-.button-split-end{
+.button-split-end {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
   padding-right: 12px;
 }
 
-.button-split-start{
+.button-split-start {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   padding-left: 12px;
@@ -305,5 +305,29 @@ footer {
     &:hover {
       text-decoration: underline;
     }
+  }
+}
+
+.quiz-navigation {
+  display: flex;
+  flex-grow: 1;
+  width: 100%;
+  margin-top: 20px;
+  gap: 8px;
+  overflow-x: auto;
+  white-space: nowrap;
+
+  a {
+    display: inline-flex;
+    padding: 20px;
+    border-radius: 4px;
+    color: var(--primary-color);
+    background-color: var(--card-bg);
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  a:hover {
+    background-color: var(--light-color);
   }
 }
