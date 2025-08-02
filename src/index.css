@@ -259,8 +259,10 @@ p {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   border: 1px solid #eee;
   a {
+    color: inherit;
+    font-size: inherit;
     position: relative;
-    color: var(--darken-color);
+    text-wrap: pretty;
     text-decoration: none;
   }
 }
