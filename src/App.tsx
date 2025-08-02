@@ -49,6 +49,17 @@ function App() {
     i === 0 ? 1 : i * 100
   );
 
+  const handleScrollToQuestion = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const targetId = (e.currentTarget as HTMLAnchorElement).getAttribute("href");
+    if (targetId) {
+      const targetElement = document.querySelector(targetId);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
+
   // Effect for handling search filtering
   useEffect(() => {
     const results = allQuestions.filter(
@@ -229,7 +240,12 @@ function App() {
           </div>
           <div className="quiz-navigation">
             {navigationButtons.map((questionIndex) => (
-              <a key={questionIndex} href={`#question-${questionIndex}`} title={`Отиди на въпрос ${questionIndex}`}>
+              <a
+                key={questionIndex}
+                href={`#question-${questionIndex}`}
+                title={`Отиди на въпрос ${questionIndex}`}
+                onClick={handleScrollToQuestion}
+              >
                 {questionIndex}
               </a>
             ))}

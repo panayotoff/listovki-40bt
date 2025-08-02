@@ -258,6 +258,11 @@ p {
   text-align: left;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   border: 1px solid #eee;
+  a {
+    position: relative;
+    color: var(--darken-color);
+    text-decoration: none;
+  }
 }
 
 .search-result-card h4 {

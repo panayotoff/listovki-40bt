@@ -15,7 +15,7 @@ const SearchResultsList: React.FC<SearchResultsListProps> = ({ questions, showAn
     <div className="search-results-container">
       {questions.map((q) => (
         <div id={`question-${q.question_number}`} key={q.question_number} className="search-result-card">
-          <h4>{q.question_number}. {q.question}</h4>
+          <h4><a href={`#question-${q.question_number}`}>{q.question_number}. {q.question}</a></h4>
           {q.question_image && (
              <img src={`./question_images/${q.question_image}`} alt="Illustration" className="question-image-small" />
           )}
