@@ -6,7 +6,14 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const preBuildScript = async () => {
-  const buildDate = (new Date()).toLocaleString('en-US');
+  const buildDate = (new Date()).toLocaleString('en', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+  });
   const versionFilePath = path.resolve(__dirname, '../src/version.ts');
   const versionContent = `export const APP_BUILD_DATE = '${buildDate}';\n`;
   
