@@ -4,6 +4,7 @@ import themeTests from "./data/tests.json";
 import type { Question, SingleQuiz } from "./types";
 // import { useMediaQuery } from "./hooks/useMediaQuery";
 import { shuffleArray } from "./utils/arrayUtils"; // Import the shuffle utility
+import { APP_BUILD_DATE } from "./version";
 
 // Import Components
 import DesktopQuiz from "./components/DesktopQuiz";
@@ -255,7 +256,7 @@ function App() {
       <main>{renderContent()}</main>
       <footer>
         <p>
-          © {new Date().getFullYear()} Христо Панайотов, за лична употреба.
+          © {new Date().getFullYear()} Христо Панайотов, за лична употреба. Build {APP_BUILD_DATE}.{" "} 
           <a
             href="https://www.marad.bg/sites/default/files/upload/documents/2019-09/Vyprosi_40BT_14012016.pdf"
             target="_blank"

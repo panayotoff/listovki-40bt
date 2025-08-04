@@ -2,6 +2,7 @@
 :root {
   --primary-color: #007bff;
   --success-color: #28a745;
+  --success-color-darken: #035c17;
   --danger-color: #dc3545;
   --light-color: #f8f9fa;
   --dark-color: #343a40;
@@ -124,8 +125,7 @@ p {
 .answer-button.correct {
   background-color: #e9f7ef;
   border-color: var(--success-color);
-  color: var(--success-color);
-  font-weight: bold;
+  color: var(--success-color-darken);
 }
 
 .answer-button.incorrect {
