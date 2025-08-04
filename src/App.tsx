@@ -99,6 +99,13 @@ function App() {
         toggleAnswers();
       }
     });
+    if (window.location.hash?.length) {
+      const questionNumber = window.location.hash.replace("#question-", "");
+      const questionElement = document.getElementById(`question-${questionNumber}`);
+      if (questionElement) {
+        questionElement.scrollIntoView({ behavior: "smooth" });
+      }
+    }
   }, []);
 
   const startQuiz = (quizQuestions = allQuestions, quizLength = QUIZ_LENGTH) => {
