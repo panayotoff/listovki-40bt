@@ -93,6 +93,13 @@ function App() {
         toggleAnswers();
       }
     });
+    if (window.location.hash?.length) {
+      const questionNumber = window.location.hash.replace("#question-", "");
+      const questionElement = document.getElementById(`question-${questionNumber}`);
+      if (questionElement) {
+        questionElement.scrollIntoView({ behavior: "smooth" });
+      }
+    }
   }, []);
 
   const startQuiz = (quizQuestions = allQuestions, quizLength = QUIZ_LENGTH) => {
@@ -256,7 +263,7 @@ function App() {
       <main>{renderContent()}</main>
       <footer>
         <p>
-          © {new Date().getFullYear()} Христо Панайотов, за лична употреба. Build {APP_BUILD_DATE}.{" "} 
+          © {new Date().getFullYear()} Христо Панайотов, за лична употреба. Build {APP_BUILD_DATE}.{" "}
           <a
             href="https://www.marad.bg/sites/default/files/upload/documents/2019-09/Vyprosi_40BT_14012016.pdf"
             target="_blank"
