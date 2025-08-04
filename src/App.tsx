@@ -12,6 +12,8 @@ import MobileQuiz from "./components/MobileQuiz";
 import SearchResultsList from "./components/SearchResultsList";
 import Results from "./components/Results";
 
+import { useFloating, autoUpdate } from "@floating-ui/react";
+
 import "./index.css";
 
 // Define the application modes
@@ -32,6 +34,10 @@ function App() {
     },
   ] as SingleQuiz[];
 
+  const { refs, floatingStyles } = useFloating({
+    whileElementsMounted: autoUpdate,
+  });
+  const [isOpen, setIsOpen] = useState(false);
   const [mode, setMode] = useState<AppMode>("search");
   const [searchTerm, setSearchTerm] = useState("");
   const [showAnswers, setShowAnswers] = useState(true);
@@ -183,7 +189,23 @@ function App() {
                   </button>
                 </div>
               ))}
+
+              <button
+                className="button-primary button-grey start-button"
+                ref={refs.setReference}
+                onClick={() => {
+                  setIsOpen((prev) => !prev);
+                }}
+              >
+                Теми
+              </button>
             </div>
+
+            {isOpen && (
+              <div ref={refs.setFloating} style={floatingStyles}>
+                floating
+              </div>
+            )}
 
             <div className="toggle-answers-container">
               <button
@@ -256,7 +278,7 @@ function App() {
       <main>{renderContent()}</main>
       <footer>
         <p>
-          © {new Date().getFullYear()} Христо Панайотов, за лична употреба. Build {APP_BUILD_DATE}.{" "} 
+          © {new Date().getFullYear()} Христо Панайотов, за лична употреба. Build {APP_BUILD_DATE}.{" "}
           <a
             href="https://www.marad.bg/sites/default/files/upload/documents/2019-09/Vyprosi_40BT_14012016.pdf"
             target="_blank"

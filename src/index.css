@@ -156,12 +156,20 @@ p {
   background-color: #66bb6a;
 }
 
+.button-grey{
+  background-color: #6c757d;
+}
+
 .button-primary:hover {
   background-color: #0056b3;
 }
 
 .button-green:hover {
   background-color: #388e3c;
+}
+
+.button-grey:hover {
+  background-color: #5a6268;
 }
 
 .button-secondary {
