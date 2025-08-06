@@ -2,11 +2,9 @@ import React, { useState, useEffect } from "react";
 import allQuestions from "./data/questions.json";
 import themeTests from "./data/tests.json";
 import type { Question, SingleQuiz } from "./types";
-// import { useMediaQuery } from "./hooks/useMediaQuery";
-import { shuffleArray } from "./utils/arrayUtils"; // Import the shuffle utility
+import { shuffleArray } from "./utils/arrayUtils";
 import { APP_BUILD_DATE } from "./version";
 
-// Import Components
 import DesktopQuiz from "./components/DesktopQuiz";
 import SearchResultsList from "./components/SearchResultsList";
 import Results from "./components/Results";
@@ -44,6 +42,7 @@ function App() {
   );
   const [quizQuestions, setQuizQuestions] = useState<Question[]>([]);
   const [finalScore, setFinalScore] = useState(0);
+  const [wrongAnswers, setWrongAnswers] = useState<number[]>([]);
 
   // const isMobile = false; // useMediaQuery("(max-width: 768px)");
   const navigationButtons = Array.from({ length: Math.ceil(allQuestions.length / 100) }, (_, i) =>
@@ -81,7 +80,6 @@ function App() {
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
-    // If user starts typing, always switch to search mode
     if (mode !== "search") {
       setMode("search");
     }
@@ -113,7 +111,8 @@ function App() {
     setMode("quiz");
   };
 
-  const handleQuizFinish = (score: number) => {
+  const handleQuizFinish = (score: number, _wrongAnswers: number[]) => {
+    setWrongAnswers(_wrongAnswers);
     setFinalScore(score);
     setMode("results");
   };
@@ -134,7 +133,17 @@ function App() {
       case "quiz":
         return <DesktopQuiz questions={quizQuestions} onFinish={handleQuizFinish} />;
       case "results":
-        return <Results score={finalScore} totalQuestions={quizQuestions.length} onRestart={handleRestart} />;
+        return (
+          <Results
+            score={finalScore}
+            totalQuestions={quizQuestions.length}
+            onRestart={handleRestart}
+            wrongAnswers={wrongAnswers}
+            onRepeatWrong={() =>
+              startQuiz(quizQuestions.filter((question) => wrongAnswers.includes(parseInt(question.question_number))))
+            }
+          />
+        );
       case "search":
       default:
         return (
@@ -230,7 +239,7 @@ function App() {
 
   return (
     <div className="App">
-      {mode === "quiz" ? (
+      {mode === "quiz" && (
         <div className="quiz-header">
           <button
             className="button-secondary back-button"
@@ -245,7 +254,8 @@ function App() {
             Назад
           </button>
         </div>
-      ) : (
+      )}
+      {mode === "search" && (
         <header className="app-header">
           <h1>Листовки 40бт</h1>
           <div className="search-container">

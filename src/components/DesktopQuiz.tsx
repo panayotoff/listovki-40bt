@@ -3,7 +3,7 @@ import type { Question } from "../types";
 
 interface DesktopQuizProps {
   questions: Question[];
-  onFinish: (score: number) => void; // New prop
+  onFinish: (score: number, wrongAnswers: number[]) => void; // New prop
 }
 
 const DesktopQuiz: React.FC<DesktopQuizProps> = ({ questions, onFinish }) => {
@@ -11,6 +11,7 @@ const DesktopQuiz: React.FC<DesktopQuizProps> = ({ questions, onFinish }) => {
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [score, setScore] = useState(0);
   const [isAnswered, setIsAnswered] = useState(false);
+  const [wrongAnswers, setWrongAnswers] = useState<number[]>([]);
 
   const currentQuestion = questions[currentQuestionIndex];
 
@@ -20,6 +21,8 @@ const DesktopQuiz: React.FC<DesktopQuizProps> = ({ questions, onFinish }) => {
     setIsAnswered(true);
     if (answer === currentQuestion.correct_answer) {
       setScore((prevScore) => prevScore + 1);
+    } else {
+      setWrongAnswers((prev) => [...prev, parseInt(currentQuestion.question_number)]);
     }
   };
 
@@ -30,7 +33,7 @@ const DesktopQuiz: React.FC<DesktopQuizProps> = ({ questions, onFinish }) => {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     } else {
       // Last question was answered, call onFinish with final score
-      onFinish(score);
+      onFinish(score, wrongAnswers);
     }
   };
 
@@ -64,8 +67,11 @@ const DesktopQuiz: React.FC<DesktopQuizProps> = ({ questions, onFinish }) => {
           const isSelected = key === selectedAnswer;
           let buttonClass = "answer-button";
           if (isAnswered) {
-            if (isCorrect) buttonClass += " correct";
-            else if (isSelected) buttonClass += " incorrect";
+            if (isCorrect) {
+              buttonClass += " correct";
+            } else if (isSelected) {
+              buttonClass += " incorrect";
+            }
           }
           return (
             <button key={key} onClick={() => handleAnswerSelect(key)} className={buttonClass} disabled={isAnswered}>
