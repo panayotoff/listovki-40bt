@@ -12,8 +12,6 @@ import MobileQuiz from "./components/MobileQuiz";
 import SearchResultsList from "./components/SearchResultsList";
 import Results from "./components/Results";
 
-import { useFloating, autoUpdate } from "@floating-ui/react";
-
 import "./index.css";
 
 // Define the application modes
@@ -34,9 +32,6 @@ function App() {
     },
   ] as SingleQuiz[];
 
-  const { refs, floatingStyles } = useFloating({
-    whileElementsMounted: autoUpdate,
-  });
   const [isOpen, setIsOpen] = useState(false);
   const [mode, setMode] = useState<AppMode>("search");
   const [searchTerm, setSearchTerm] = useState("");
@@ -198,8 +193,8 @@ function App() {
               ))}
 
               <button
+                style={{ display: "none" }}
                 className="button-primary button-grey start-button"
-                ref={refs.setReference}
                 onClick={() => {
                   setIsOpen((prev) => !prev);
                 }}
@@ -208,11 +203,7 @@ function App() {
               </button>
             </div>
 
-            {isOpen && (
-              <div ref={refs.setFloating} style={floatingStyles}>
-                floating
-              </div>
-            )}
+            {isOpen && <></>}
 
             <div className="toggle-answers-container">
               <button
