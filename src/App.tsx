@@ -8,7 +8,6 @@ import { APP_BUILD_DATE } from "./version";
 
 // Import Components
 import DesktopQuiz from "./components/DesktopQuiz";
-import MobileQuiz from "./components/MobileQuiz";
 import SearchResultsList from "./components/SearchResultsList";
 import Results from "./components/Results";
 
@@ -46,7 +45,7 @@ function App() {
   const [quizQuestions, setQuizQuestions] = useState<Question[]>([]);
   const [finalScore, setFinalScore] = useState(0);
 
-  const isMobile = false; // useMediaQuery("(max-width: 768px)");
+  // const isMobile = false; // useMediaQuery("(max-width: 768px)");
   const navigationButtons = Array.from({ length: Math.ceil(allQuestions.length / 100) }, (_, i) =>
     i === 0 ? 1 : i * 100
   );
@@ -133,11 +132,7 @@ function App() {
   const renderContent = () => {
     switch (mode) {
       case "quiz":
-        return isMobile ? (
-          <MobileQuiz questions={quizQuestions} onFinish={handleQuizFinish} />
-        ) : (
-          <DesktopQuiz questions={quizQuestions} onFinish={handleQuizFinish} />
-        );
+        return <DesktopQuiz questions={quizQuestions} onFinish={handleQuizFinish} />;
       case "results":
         return <Results score={finalScore} totalQuestions={quizQuestions.length} onRestart={handleRestart} />;
       case "search":
@@ -244,6 +239,9 @@ function App() {
               setMode("search");
             }}
           >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 122.88 108.06" width={"1rem"} height={"1rem"}>
+              <path d="M63.94,24.28a14.28,14.28,0,0,0-20.36-20L4.1,44.42a14.27,14.27,0,0,0,0,20l38.69,39.35a14.27,14.27,0,0,0,20.35-20L48.06,68.41l60.66-.29a14.27,14.27,0,1,0-.23-28.54l-59.85.28,15.3-15.58Z" />
+            </svg>
             Назад
           </button>
         </div>
@@ -274,42 +272,44 @@ function App() {
         </header>
       )}
       <main>{renderContent()}</main>
-      <footer>
-        <p>
-          © {new Date().getFullYear()} Христо Панайотов, за лична употреба. Build {APP_BUILD_DATE}.{" "}
-          <a
-            href="https://www.marad.bg/sites/default/files/upload/documents/2019-09/Vyprosi_40BT_14012016.pdf"
-            target="_blank"
-          >
-            Vyprosi_40BT_14012016.pdf
-            <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <g id="Interface / External_Link">
-                <path
-                  d="M10.0002 5H8.2002C7.08009 5 6.51962 5 6.0918 5.21799C5.71547 5.40973 5.40973 5.71547 5.21799 6.0918C5 6.51962 5 7.08009 5 8.2002V15.8002C5 16.9203 5 17.4801 5.21799 17.9079C5.40973 18.2842 5.71547 18.5905 6.0918 18.7822C6.5192 19 7.07899 19 8.19691 19H15.8031C16.921 19 17.48 19 17.9074 18.7822C18.2837 18.5905 18.5905 18.2839 18.7822 17.9076C19 17.4802 19 16.921 19 15.8031V14M20 9V4M20 4H15M20 4L13 11"
-                  stroke="#000000"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </g>
-            </svg>
-          </a>
-          <a href="https://github.com/panayotoff/listovki-40bt">
-            GitHub
-            <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <g id="Interface / External_Link">
-                <path
-                  d="M10.0002 5H8.2002C7.08009 5 6.51962 5 6.0918 5.21799C5.71547 5.40973 5.40973 5.71547 5.21799 6.0918C5 6.51962 5 7.08009 5 8.2002V15.8002C5 16.9203 5 17.4801 5.21799 17.9079C5.40973 18.2842 5.71547 18.5905 6.0918 18.7822C6.5192 19 7.07899 19 8.19691 19H15.8031C16.921 19 17.48 19 17.9074 18.7822C18.2837 18.5905 18.5905 18.2839 18.7822 17.9076C19 17.4802 19 16.921 19 15.8031V14M20 9V4M20 4H15M20 4L13 11"
-                  stroke="#000000"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </g>
-            </svg>
-          </a>
-        </p>
-      </footer>
+      {mode === "search" && (
+        <footer>
+          <p>
+            © {new Date().getFullYear()} Христо Панайотов, за лична употреба. Build {APP_BUILD_DATE}.{" "}
+            <a
+              href="https://www.marad.bg/sites/default/files/upload/documents/2019-09/Vyprosi_40BT_14012016.pdf"
+              target="_blank"
+            >
+              Vyprosi_40BT_14012016.pdf
+              <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g id="Interface / External_Link">
+                  <path
+                    d="M10.0002 5H8.2002C7.08009 5 6.51962 5 6.0918 5.21799C5.71547 5.40973 5.40973 5.71547 5.21799 6.0918C5 6.51962 5 7.08009 5 8.2002V15.8002C5 16.9203 5 17.4801 5.21799 17.9079C5.40973 18.2842 5.71547 18.5905 6.0918 18.7822C6.5192 19 7.07899 19 8.19691 19H15.8031C16.921 19 17.48 19 17.9074 18.7822C18.2837 18.5905 18.5905 18.2839 18.7822 17.9076C19 17.4802 19 16.921 19 15.8031V14M20 9V4M20 4H15M20 4L13 11"
+                    stroke="#000000"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </g>
+              </svg>
+            </a>
+            <a href="https://github.com/panayotoff/listovki-40bt">
+              GitHub
+              <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g id="Interface / External_Link">
+                  <path
+                    d="M10.0002 5H8.2002C7.08009 5 6.51962 5 6.0918 5.21799C5.71547 5.40973 5.40973 5.71547 5.21799 6.0918C5 6.51962 5 7.08009 5 8.2002V15.8002C5 16.9203 5 17.4801 5.21799 17.9079C5.40973 18.2842 5.71547 18.5905 6.0918 18.7822C6.5192 19 7.07899 19 8.19691 19H15.8031C16.921 19 17.48 19 17.9074 18.7822C18.2837 18.5905 18.5905 18.2839 18.7822 17.9076C19 17.4802 19 16.921 19 15.8031V14M20 9V4M20 4H15M20 4L13 11"
+                    stroke="#000000"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </g>
+              </svg>
+            </a>
+          </p>
+        </footer>
+      )}
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import React from "react";
+import Confetti from "react-confetti";
 
 interface ResultsProps {
   score: number;
@@ -16,6 +17,7 @@ const Results: React.FC<ResultsProps> = ({ score, totalQuestions, onRestart }) =
       <button onClick={onRestart} className="button-primary">
         Започни отначало
       </button>
+      {score === totalQuestions && <Confetti width={window.innerWidth} height={window.innerHeight} />}
     </div>
   );
 };
