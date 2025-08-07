@@ -391,15 +391,16 @@ footer {
   display: flex;
   flex-grow: 1;
   width: 100%;
-  margin-top: 20px;
+  margin-block-start: 20px;
   gap: 8px;
   overflow-x: auto;
   white-space: nowrap;
   justify-content: space-between;
+  padding: 2px;
 
   a {
     display: inline-flex;
-    padding: 20px;
+    padding: 15px;
     border-radius: 4px;
     color: var(--primary-color);
     background-color: var(--card-bg);
@@ -421,4 +422,21 @@ footer {
   svg {
     fill: currentColor;
   }
+}
+
+button span,
+button svg {
+  display: inline-block;
+  transform-origin: center center;
+  transition: transform 0.1s ease-in-out;
+}
+
+button:active span,
+button:active svg {
+  transform: scale(0.98);
+}
+
+button:focus-visible {
+  outline-offset: 1px;
+  outline: 2px solid var(--outline-color, #007bff);
 }

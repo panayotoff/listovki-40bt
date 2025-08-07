@@ -17,7 +17,7 @@ const Results: React.FC<ResultsProps> = ({ score, totalQuestions, onRestart, wro
         Точки: {score} / {totalQuestions}
       </p>
       <button onClick={onRestart} className="button-primary">
-        Започни отначало
+        <span>Започни отначало</span>
       </button>
       {wrongAnswers && wrongAnswers.length > 0 && (
         <>
@@ -25,7 +25,7 @@ const Results: React.FC<ResultsProps> = ({ score, totalQuestions, onRestart, wro
           <br />
           <br />
           <button className="button-primary" onClick={() => onRepeatWrong && onRepeatWrong(wrongAnswers)}>
-            Повтори сбърканите въпроси
+            <span>Повтори сбърканите въпроси</span>
           </button>
         </>
       )}

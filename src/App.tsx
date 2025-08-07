@@ -156,14 +156,14 @@ function App() {
                 onClick={() => startQuiz()}
                 className="button-primary button-green start-button"
               >
-                {`Тест ${QUIZ_LENGTH} въпроса`}
+                <span>{`Тест ${QUIZ_LENGTH} въпроса`}</span>
               </button>
               <button
                 title={`Примерен тест от ${SINGLE_THEME_QUIZ_LENGTH} случайни въпроса`}
                 onClick={() => startQuiz(undefined, SINGLE_THEME_QUIZ_LENGTH)}
                 className="button-primary button-green start-button"
               >
-                {`Тест ${SINGLE_THEME_QUIZ_LENGTH} въпроса`}
+                <span>{`Тест ${SINGLE_THEME_QUIZ_LENGTH} въпроса`}</span>
               </button>
               {themeQuizes.map((quiz: SingleQuiz, index: number) => (
                 <div key={index} className="button-split">
@@ -179,7 +179,7 @@ function App() {
                       )
                     }
                   >
-                    {quiz.title}
+                    <span>{quiz.title}</span>
                   </button>
                   <button
                     title={`Тест по тема: ${quiz.title} ( ${quiz.questionsNumbers.length} въпроса )`}
@@ -193,7 +193,7 @@ function App() {
                       )
                     }
                   >
-                    ( {`${quiz.questionsNumbers.length} въпроса`} )
+                    <span>( {`${quiz.questionsNumbers.length} въпроса`} )</span>
                   </button>
                 </div>
               ))}
@@ -242,7 +242,7 @@ function App() {
                         )
                       }
                     >
-                      {test.title}
+                      <span>{test.title}</span>
                     </button>
                   ))}
                 </div>
@@ -291,7 +291,7 @@ function App() {
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 122.88 108.06" width={"1rem"} height={"1rem"}>
               <path d="M63.94,24.28a14.28,14.28,0,0,0-20.36-20L4.1,44.42a14.27,14.27,0,0,0,0,20l38.69,39.35a14.27,14.27,0,0,0,20.35-20L48.06,68.41l60.66-.29a14.27,14.27,0,1,0-.23-28.54l-59.85.28,15.3-15.58Z" />
             </svg>
-            Назад
+            <span>Назад</span>
           </button>
         </div>
       )}
