@@ -395,6 +395,7 @@ footer {
   gap: 8px;
   overflow-x: auto;
   white-space: nowrap;
+  justify-content: space-between;
 
   a {
     display: inline-flex;
