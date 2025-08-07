@@ -431,6 +431,10 @@ button svg {
   transition: transform 0.1s ease-in-out;
 }
 
+button {
+  user-select: none;
+}
+
 button:active span,
 button:active svg {
   transform: scale(0.98);
