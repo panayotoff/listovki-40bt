@@ -49,7 +49,7 @@ p {
   padding: 20px;
 }
 
-main{
+main {
   margin-bottom: auto;
 }
 
@@ -126,6 +126,12 @@ main{
   }
 }
 
+.small-buttons-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
 /* Buttons */
 .answer-button {
   width: 100%;
@@ -168,6 +174,24 @@ main{
   opacity: 0.8;
 }
 
+.button-start-test-small {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  text-align: left;
+  height: min-content;
+  background-color: #00695c;
+}
+
+.button-start-test-small:hover {
+  background-color: #004d40;
+}
+
 .button-primary {
   background-color: var(--primary-color);
   color: white;
@@ -186,7 +210,14 @@ main{
 }
 
 .button-grey {
+  display: inline-flex;
+  align-items: center;
+  gap: 1em;
   background-color: #6c757d;
+
+  svg {
+    transform-origin: center center;
+  }
 }
 
 .button-primary:hover {
